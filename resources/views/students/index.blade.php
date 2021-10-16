@@ -1,4 +1,6 @@
 @extends('layouts.app')
+<a href="index.blade.php">Home</a>
+<a href="students/index.blade.php">Student</a>
 
 @section('content')
 <div class="container">
