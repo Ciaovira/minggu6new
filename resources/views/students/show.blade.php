@@ -12,18 +12,16 @@ required="required" name="nim" value="{{$student->nim}}"></br>
  <input type="text" class="form-control" 
 required="required" name="name" value="{{$student->name}}"></br>
  </div>
- <div class="form-group">
-<label for="Kelas">Class</label>
-<select class="form-control" name="Kelas">
-@foreach($kelas as $class)
- <option value="{{$class->id}}" {{ $student-
->class_id == $class->id ? "selected":"" }}> 
- {{ $class->class_name}}
-</option>
-@endforeach
-</select></br>
+ <div class="card-header">{{ $student->nim }}</div>
+<div class="card-body">
+Name : {{ $student->name }} <br>
+Class : {{ $student->kelas->class_name }} <br>
+Department : {{ $student->department }} <br>
+Phone Number : {{ $student->phone_number }} <br>
+Created at : {{ $student->created_at }} <br>
+Updated at : {{ $student->updated_at }} <br>
 </div>
-
+</div>
  <div class="form-group">
  <label for="department">Department</label>
  <input type="text" class="form-control" 
@@ -31,20 +29,11 @@ required="required" name="department" value="{{$student-
 >department}}"></br>
  </div>
  <div class="form-group">
- <label for="phone_number">Phone Number</label>
+ <label for="phone_number" >Phone Number</label>
  <input type="text" class="form-control" 
 required="required" name="phone_number" value="{{$student-
 >phone_number}}"></br>
  </div>
- 
- <form action="/students" method="post" enctype="multipart/formdata">
- <div class="form-group">
- <label for="photo">Feature Image</label>
- <input type="file" class="form-control" required="required" 
-name="photo" value="{{$student->photo}}"></br>
- <img width="150px" src="{{asset('storage/'.$student->photo)}}">
-</div>
-
- <button type="submit" name="edit" class="btn btn-primary 
-float-right">Save Changes</button>
+ <button type="submit" name="back" class="btn btn-primary 
+float-right"><a href="/students/{{$s->id}}/home" class="btn btninfo">Back</a></button>
 </form>

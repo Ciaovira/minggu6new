@@ -16,6 +16,12 @@
 </div>
 @endif
 
+<p>Cari Data Student :</p>
+	<form action="/students/cari" method="GET">
+		<input type="text" name="cari" placeholder="Cari Student .." value="{{ old('cari') }}">
+		<input type="submit" value="CARI">
+	</form>
+
 <a href="/students/create" class="btn btn-primary">Add Data</a> 
 <br><br>
 
@@ -32,9 +38,8 @@
 @foreach($student as $s)
 <tr>
 <td>{{ $s->nim }}</td>
-<td>{{ $s->name }}</td>
-<td>{{ $s->class }}</td>
-<td>{{ $s->department }}</td>
+ <td>{{ $s->name }}</td>
+ <td>{{ $s->kelas->class_name }}</td>
 <td>
 <form action="/students/{{$s->id}}" method="post">
  <a href="/students/{{$s->id}}/edit" class="btn btnwarning">Edit</a>
@@ -42,6 +47,12 @@
  @method('DELETE')
  <button type="submit" name="delete" class="btn btndanger">Delete</button>
 </form>
+<td>
+<form action="/students/{{$s->id}}" method="post">
+ <a href="/students/{{$s->id}}/show" class="btn btninfo">View</a>
+</form>
+</td>
+
 </td>
 </tr>
 @endforeach
