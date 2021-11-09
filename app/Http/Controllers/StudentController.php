@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Kelas;
 use App\Models\Course;
+use PDF;
 
 
 class StudentController extends Controller
@@ -43,8 +44,7 @@ return view('students.create',['kelas'=>$kelas]);
     $student = new Student;
  
     if($request->file('photo')){
-    $image_name = $request->file('photo')-
-   >store('images','public');
+    $image_name = $request->file('photo')->store('images','public');
     }
     
     $student->nim = $request->nim;
@@ -150,4 +150,10 @@ return view('students.create',['kelas'=>$kelas]);
 		return view('students.index',['student' => $students]);
  
 	}
+    public function report($id){
+        $student = Student::find($id);
+        $pdf = PDF::loadview('students.report',['student'=>$student]);
+        return $pdf->stream();
+       }
+       
 }
